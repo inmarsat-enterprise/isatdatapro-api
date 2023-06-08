@@ -8,7 +8,7 @@ const idpApi = require('../lib/api-v1');
 const mailboxes = require('./mailboxes-local').credentials;
 const testTerminals = require('./mailboxes-local').testTerminals;
 
-const mailboxIndex = 2
+const mailboxIndex = testTerminals.length - 1;
 const testMobileId = testTerminals[mailboxIndex].mobileId;
 const auth = mailboxes[mailboxIndex];
 

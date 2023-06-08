@@ -7,7 +7,7 @@ const expect = chai.expect;
 const idpApi = require('../lib/api-v1');
 const mailboxes = require('./mailboxes-local').credentials;
 
-const mailboxIndex = 2
+const mailboxIndex = mailboxes.length - 1;
 const auth = mailboxes[mailboxIndex];
 const badAuth = { accessId: 'bad', password: 'bad' };
 
