@@ -63,8 +63,8 @@ concepts:
 * *receiveTimeUtc* replaces ReceiveUTC for Return messages
 * *mailboxTimeUtc* replaces MessageUTC for Return messages and CreateUTC for Forward mesages
 * *stateTimeUtc* replaces StateUTC for (Forward) Submissions and StatusUTC for Forward messages
-* *mobileSleepSeconds* replaces TerminalWakeupPeriod for Forward messages
-* *mobileWakeupPeriod* contains the enumerated value of wakeupPeriod as configured/reported OTA
+* *modemSleepSeconds* replaces TerminalWakeupPeriod for Forward messages
+* *modemWakeupPeriod* contains the enumerated value of wakeupPeriod as configured/reported OTA
 
 Example Return message with Message Definition File for SIN=255 uploaded to its Mailbox:
 ```
