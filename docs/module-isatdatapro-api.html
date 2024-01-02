@@ -107,7 +107,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="~ForwardMessageStates"><span class="type-signature ">inner,constant</span>ForwardMessageStates<span class="type-signature type number">number</span> </h4>
+        <h4 class="name" id="~ForwardMessageState"><span class="type-signature ">inner,constant</span>ForwardMessageState<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -356,7 +356,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="~modemWakeupPeriods"><span class="type-signature ">inner,constant</span>modemWakeupPeriods<span class="type-signature type number">number</span> </h4>
+        <h4 class="name" id="~ModemWakeupPeriod"><span class="type-signature ">inner,constant</span>ModemWakeupPeriod<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -721,7 +721,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="~TerminalWakeupPeriods"><span class="type-signature ">inner,constant</span>TerminalWakeupPeriods<span class="type-signature type number">number</span> </h4>
+        <h4 class="name" id="~TerminalWakeupPeriod"><span class="type-signature ">inner,constant</span>TerminalWakeupPeriod<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -1099,7 +1099,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 936
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 928
         </div>
         
     </div>
@@ -1270,7 +1270,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 197
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 264
         </div>
         
     </div>
@@ -1281,7 +1281,8 @@
     
     
     <div class="description">
-        <p>Returns an IDP message gateway formatted timestamp, defaults to 1970-01-01 00:00:00</p>
+        <p>Convert a JS Date object to a Message Gateway System formatted timestamp,
+defaults to 1970-01-01 00:00:00</p>
     </div>
     
 
@@ -1393,7 +1394,7 @@
                         
                     
             </td>
-            <td class="description last">An IDP message gateway formatted timestamp 'YYYY-MM-DD hh:mm:ss'</td>
+            <td class="description last">A MGS-formatted timestamp <code>yyyy-mm-dd HH:MM:SS</code></td>
         </tr>
     
     </tbody>
@@ -1415,7 +1416,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 1049
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 1005
         </div>
         
     </div>
@@ -1560,7 +1561,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 413
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 478
         </div>
         
     </div>
@@ -1571,7 +1572,7 @@
     
     
     <div class="description">
-        <p>Returns an array of error definitions based on an API error code</p>
+        <p>Get an array of error definitions from the Message Gateway System</p>
     </div>
     
 
@@ -1660,7 +1661,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 441
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 493
         </div>
         
     </div>
@@ -1671,7 +1672,7 @@
     
     
     <div class="description">
-        <p>Returns a descriptive error name based on an API error code</p>
+        <p>Get the descriptive error name based on an API error code</p>
     </div>
     
 
@@ -1721,7 +1722,7 @@
             
             <td class="description last">
                 
-                <p>The ErrorID number returned by the API operation</p></td>
+                <p>The ErrorID returned by the API operation</p></td>
         </tr>
 	
 	
@@ -1808,7 +1809,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 773
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 797
         </div>
         
     </div>
@@ -1979,7 +1980,7 @@
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 862
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 868
         </div>
         
     </div>
@@ -2168,14 +2169,14 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="~getIdpTime">
+        <h4 class="name" id="~getMgsTime">
             
-            <span class="type-signature ">async,inner</span>getIdpTime<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Promise.&lt;Date>}</span>
+            <span class="type-signature ">async,inner</span>getMgsTime<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Promise.&lt;Date>}</span>
         </h4>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 262
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 329
         </div>
         
     </div>
@@ -2186,7 +2187,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
     
     <div class="description">
-        <p>Returns current UTC time at the MGS</p>
+        <p>Get the current UTC time at the Message Gateway System</p>
     </div>
     
 
@@ -2268,14 +2269,14 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="~getIdpVersion">
+        <h4 class="name" id="~getMgsVersion">
             
-            <span class="type-signature ">async,inner</span>getIdpVersion<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Promise.&lt;string>}</span>
+            <span class="type-signature ">async,inner</span>getMgsVersion<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Promise.&lt;string>}</span>
         </h4>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 132
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 213
         </div>
         
     </div>
@@ -2286,7 +2287,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
     
     <div class="description">
-        <p>Returns the Message Gateway System software version details</p>
+        <p>Get the Message Gateway System software version details</p>
     </div>
     
 
@@ -2375,7 +2376,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 990
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 963
         </div>
         
     </div>
@@ -2637,7 +2638,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 530
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 582
         </div>
         
     </div>
@@ -2805,7 +2806,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 821
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 827
         </div>
         
     </div>
@@ -2928,7 +2929,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
                         
                     
             </td>
-            <td class="description last">see <code>ForwardMessageStates</code></td>
+            <td class="description last">see <code>ForwardMessageState</code></td>
         </tr>
     
     </tbody>
@@ -2950,7 +2951,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 634
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 680
         </div>
         
     </div>
@@ -3099,7 +3100,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
                         
                     
             </td>
-            <td class="description last">see <code>TerminalWakeupPeriods</code></td>
+            <td class="description last">see <code>TerminalWakeupPeriod</code></td>
         </tr>
     
     </tbody>
@@ -3121,7 +3122,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 249
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 316
         </div>
         
     </div>
@@ -3132,7 +3133,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
     
     <div class="description">
-        <p>Returns a Javascript Date object by converting an IDP message gateway formatted timestamp</p>
+        <p>Convert a MGS-formatted timestamp to a Javascript Date object</p>
     </div>
     
 
@@ -3179,7 +3180,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
             
             <td class="description last">
                 
-                <p>An IDP message gateway formatted timestamp 'YYYY-MM-DD hh:mm:ss'</p></td>
+                <p>A MGS formatted timestamp <code>yyyy-mm-dd HH:MM:SS</code></p></td>
         </tr>
 	
 	
@@ -3227,7 +3228,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
 <dl>
     <dt>
         <div class="param-desc">
-        <p>If the passed in value is not a valid IDP datestamp</p>
+        <p>If the passed in value is not a valid MGS datestamp</p>
         </div>
     </dt>
     <dt>
@@ -3271,7 +3272,366 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
                         
                     
             </td>
-            <td class="description last">Javascript Date object</td>
+            <td class="description last">Javascript <code>Date</code> object</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="~mapJsonKeys_">
+            
+            <span class="type-signature ">inner</span>mapJsonKeys_<span class="signature">(jsonObject, template)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Object}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 410
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Map a JSON object to Messaging API keys</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>jsonObject</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>A JSON object with camelized keys e.g. errorId</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>template</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>A template with context-specific mappings</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            <td class="description last">the Messaging API keyed object</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="~mgsApiGet_">
+            
+            <span class="type-signature ">inner</span>mgsApiGet_<span class="signature">(endpoint, auth, filters)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Promise.&lt;Object>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 130
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Construct/send a GET request and parse the response.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>endpoint</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>auth</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">ApiV1Auth</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>filters</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                        Promise.&lt;Object>
+                        
+                    
+            </td>
+            <td class="description last"></td>
         </tr>
     
     </tbody>
@@ -3293,7 +3653,7 @@ NOTE: API should support ids as optional if startTimeUtc is specified</p>
     
         
         <div class="tag-source">
-            /home/gbp/projects/isatdatapro-api/lib/api-v1.js, line 683
+            /home/gbp/isatprojects/isatdatapro-api/lib/api-v1.js, line 729
         </div>
         
     </div>
@@ -3469,7 +3829,8 @@ see <code>SubmitForwardMessagesResult</code></td>
 <dd>
     
     <div class="description">
-        <p>An authentication pair for the IDP Messaging API V1, used for various operations</p>
+        <p>An authentication pair for the IDP Messaging API V1
+used for various operations</p>
     </div>
     
     
@@ -4087,7 +4448,7 @@ see <code>SubmitForwardMessagesResult</code></td>
 <dd>
     
     <div class="description">
-        <p>A data structure containing various content and metadata within a message,
+        <p>Field data structure containing various content and metadata within a message,
 present if a codec is provisioned on the Mailbox</p>
     </div>
     
@@ -4927,7 +5288,7 @@ rather than all since startTimeUtc</p></td>
 	
         <tr>
             
-                <td class="name"><code>mobileWakeupPeriod</code></td>
+                <td class="name"><code>modemWakeupPeriod</code></td>
             
             
             <td class="type">
@@ -6129,7 +6490,7 @@ must be present if ids is not</p></td>
 	
         <tr>
             
-                <td class="name"><code>mobileWakeupPeriod</code></td>
+                <td class="name"><code>modemWakeupPeriod</code></td>
             
             
             <td class="type">
@@ -6158,7 +6519,7 @@ must be present if ids is not</p></td>
 	
         <tr>
             
-                <td class="name"><code>mobileSleepSeconds</code></td>
+                <td class="name"><code>modemSleepSeconds</code></td>
             
             
             <td class="type">
@@ -6736,7 +7097,7 @@ must be present if ids is not</p></td>
 <dd>
     
     <div class="description">
-        <p>A set of metadata encapsulating data transported over the satellite network as a message</p>
+        <p>Message metadata encapsulating data transported over the satellite network</p>
     </div>
     
     
@@ -6992,7 +7353,7 @@ must be present if ids is not</p></td>
 	
         <tr>
             
-                <td class="name"><code>ErrorID</code></td>
+                <td class="name"><code>errorId</code></td>
             
             
             <td class="type">
@@ -7015,7 +7376,7 @@ must be present if ids is not</p></td>
 	
         <tr>
             
-                <td class="name"><code>Mobiles</code></td>
+                <td class="name"><code>mobiles</code></td>
             
             
             <td class="type">
@@ -7242,7 +7603,7 @@ must be present if ids is not</p></td>
 <dd>
     
     <div class="description">
-        <p>A set of metadata relating to a Mobile-Originated (aka From-Mobile aka Return) message</p>
+        <p>Mobile-Originated (aka From-Mobile aka Return) message metadata</p>
     </div>
     
     
@@ -7709,7 +8070,7 @@ metadata for Mobile-Terminated messages submitted in the operation</p></td>
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Tue Sep 08 2020 20:24:11 GMT-0400 (Eastern Daylight Time)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 02 2024 15:20:32 GMT-0500 (Eastern Standard Time)
         </footer>
     </div>
 </div>
