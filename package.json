@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gbrucepayne/isatdatapro-api.git"
+    "url": "https://github.com/inmarsat-enterprise/isatdatapro-api.git"
   },
   "keywords": [
     "idp",
@@ -17,7 +17,7 @@
     "iiot",
     "inmarsat"
   ],
-  "author": "Geoff Bruce-Payne <gbrucepayne@hotmail.com>",
+  "author": "Geoff Bruce-Payne <geoff.bruce-payne@inmarsat.com>",
   "license": "Apache-2.0",
   "devDependencies": {
     "chai": "4.3.4",
@@ -25,7 +25,6 @@
     "sinon": "10.0.0"
   },
   "dependencies": {
-    "request": "^2.88.0",
     "winston": "^3.2.1"
   },
   "directories": {
@@ -35,7 +34,7 @@
     "test": "test"
   },
   "bugs": {
-    "url": "https://github.com/gbrucepayne/isatdatapro-api/issues"
+    "url": "https://github.com/inmarsat-enterprise/isatdatapro-api/issues"
   },
-  "homepage": "https://github.com/gbrucepayne/isatdatapro-api#readme"
+  "homepage": "https://github.com/inmarsat-enterprise/isatdatapro-api#readme"
 }
