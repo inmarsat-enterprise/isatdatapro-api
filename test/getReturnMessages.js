@@ -8,8 +8,9 @@ const idpApi = require('../lib/api-v1');
 const mailboxes = require('./mailboxes-local').credentials;
 
 const mailboxIndex = mailboxes.length - 1;
-const auth = mailboxes[mailboxIndex];
-const badAuth = { accessId: 'bad', password: 'bad' };
+const { accessId, password } = mailboxes[mailboxIndex];
+const auth = new idpApi.ApiV1Auth(accessId, password);
+const badAuth = new idpApi.ApiV1Auth('bad', 'bad');
 
 const RETRIEVAL_OFFSET = 24;
 
@@ -36,35 +37,37 @@ describe('#getReturnMessages()', function () {
   
   describe('with invalid authentication', function() {
     const authErrCode = 21785;
-    it(description + ` and have errorId ${authErrCode}`, function() {
-      return Promise.resolve(idpApi.getReturnMessages(badAuth, filter))
-      .then(result => {
+    it(description + ` and have errorId ${authErrCode}`, async function() {
+      try {
+        const result = await idpApi.getReturnMessages(badAuth, filter);
         expect(result).to.be.an('Object').that.has.all.keys(apiKeys);
         expect(result.errorId).to.equal(authErrCode);
-      })
+      } catch (err) {
+        console.error(err.message);
+        throw err;
+      }
     });
   });
 
   describe('with valid authentication', async function() {
-    description = `should include properties ${apiKeys}`
-    + `\n\t where messages include properties ${messageKeys}`
-    + `\n\t and if a message includes payloadJaon it has keys ${payloadKeys}`
-    + '\n\t and if a message includes payloadRaw it is an array';
-    it(description, function () {
-      return Promise.resolve(idpApi.getReturnMessages(auth, filter))
-      .then(function (result) {
+    description = description +
+        `\n\t where messages include properties ${messageKeys}` +
+        `\n\t and if a message includes payloadJson it has keys ${payloadKeys}` +
+        '\n\t and if a message includes payloadRaw it is an array of byte values';
+    it(description, async function () {
+      try {
+        const result = await idpApi.getReturnMessages(auth, filter);
         expect(result).to.be.an('Object').that.has.all.keys(apiKeys);
         expect(result.errorId).to.equal(0);
         if (result.messages !== null) {
-          console.log(`Retreived ${result.messages.length} messages like: `
-              + `${JSON.stringify(result.messages[0], null, 2)}`);
+          console.log(`Retreived ${result.messages.length} messages like: ` +
+              `${JSON.stringify(result.messages[0])}`);
           result.messages.forEach(message => {
             expect(message).to.be.an('Object').that.includes.all.keys(messageKeys);
             if (message.payloadRaw) {
               expect(message.payloadRaw).to.be.an('Array');
               message.payloadRaw.forEach(dataByte => {
-                expect(dataByte).to.be.a('number')
-                  .above(-1).and.below(256);
+                expect(dataByte).to.be.a('number').above(-1).and.below(256);
               });
             }
             if (message.payloadJson) {
@@ -95,11 +98,10 @@ describe('#getReturnMessages()', function () {
           console.log(`No retrieved messages: ${JSON.stringify(result)}`);
           expect(result.nextStartId).to.equal(-1);
         }
-      })
-      .catch(err => {
-        console.log(`Error: ${err.message}`);
+      } catch (err) {
+        console.error(err.message);
         throw err;
-      });
+      }
     })
   });
 });

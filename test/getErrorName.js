@@ -14,16 +14,15 @@ describe('#getErrorName()', function () {
   context('with number', function () {
     for (let key in testCases) {
       if (!testCases.hasOwnProperty(key)) continue;
-      it(key + ' should return ' + testCases[key], function () {
-        return Promise.resolve(idpApi.getErrorName(key))
-        .then(function (result) {
-          console.log(`${result}`);
+      it(key + ' should return ' + testCases[key], async function () {
+        try {
+          const result = await idpApi.getErrorName(key);
+          console.log(`Error ID ${key} = ${result}`);
           expect(result).to.equal(testCases[key]);
-        })
-        .catch(err => {
-          console.log(`Error: ${err.message}`);
+        } catch (err) {
+          console.error(err.message);
           throw err;
-        });
+        }
       })
     }
   })

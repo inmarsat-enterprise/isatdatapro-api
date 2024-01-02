@@ -19,26 +19,25 @@ describe('#getMobileIds()', function () {
   const mobileKeys = ['mobileId', 'description', 'lastRegistrationTimeUtc', 'satelliteRegion'];
   const description = 'should return a list of Mobile information including' +
                       `${mobileKeys}`;
-  it(description, function () {
+  it(description, async function () {
     const filter = {};
-    return Promise.resolve(idpApi.getMobileIds(auth, filter))
-    .then(function (result) {
+    try {
+      const result = await idpApi.getMobileIds(auth, filter);
       expect(result)
-        .to.be.an('Object')
-        .that.includes.all.keys(apiKeys);
+          .to.be.an('Object')
+          .that.includes.all.keys(apiKeys);
       expect(result.errorId).to.equal(0);
       if (result.mobiles !== null) {
         for (let i = 0; i < result.mobiles.length; i++) {
           expect(result.mobiles[i])
-            .to.be.an('Object')
-            .that.includes.all.keys(mobileKeys);
+              .to.be.an('Object')
+              .that.includes.all.keys(mobileKeys);
         }
       }
-    })
-    .catch(err => {
-      console.log(`Error: ${err.message}`);
+    } catch (err) {
+      console.error(err.message);
       throw err;
-    });
+    }
   })
   //TODO: exercise error cases bad auth, filter out of range, mobile filter
 });

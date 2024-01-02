@@ -10,7 +10,8 @@ const testTerminals = require('./mailboxes-local').testTerminals;
 
 const mailboxIndex = testTerminals.length - 1;
 const testMobileId = testTerminals[mailboxIndex].mobileId;
-const auth = mailboxes[mailboxIndex];
+const { accessId, password } = mailboxes[mailboxIndex];
+const auth = new idpApi.ApiV1Auth(accessId, password);
 
 const RETRIEVAL_OFFSET = 24;   //: for Forward statuses
 
@@ -25,12 +26,12 @@ describe('#ForwardMessage test suite', function() {
     });
     const apiKeys = ['errorId', 'submissions'];
     const submissionKeys = ['errorId', 'messageId', 'userMessageId', 
-      'mobileId', 'stateTimeUtc', 'scheduledSendTimeUtc', 'mobileWakeupPeriod',
+      'mobileId', 'stateTimeUtc', 'scheduledSendTimeUtc', 'modemWakeupPeriod',
       'size'
     ];
-    const description = `should return an array of Submissions `
-        + `with ${submissionKeys}`;
-    it(description, function () {
+    const description = `should return an array of Submissions ` +
+        `with keys: ${submissionKeys}`;
+    it(description, async function () {
       const testMessage = {
         mobileId: testMobileId,
         userMessageId: userMessageId,
@@ -38,8 +39,8 @@ describe('#ForwardMessage test suite', function() {
       };
       console.log(`Submitting message to ${testMobileId}`);
       const messages = [testMessage];
-      return Promise.resolve(idpApi.submitForwardMessages(auth, messages))
-      .then(function (result) {
+      try {
+        const result = await idpApi.submitForwardMessages(auth, messages);
         expect(result).to.be.an('Object').that.includes.all.keys(apiKeys);
         expect(result.errorId).to.equal(0);
         expect(result.submissions).to.be.an('Array').that.has.lengthOf(1);
@@ -50,14 +51,13 @@ describe('#ForwardMessage test suite', function() {
         console.log(`Added ${submission.messageId} to forwardIds ${JSON.stringify(forwardIds)}`);
         expect(submission.userMessageId).to.equal(userMessageId);
         expect(submission.mobileId).to.equal(testMobileId);
-        if (submission.mobileWakeupPeriod) {
+        if (submission.modemWakeupPeriod) {
           expect(submission).has.property('scheduledSendTimeUtc');
         }
-      })
-      .catch(err => {
-        console.log(`Error: ${err.message}`);
+      } catch (err) {
+        console.error(err.message);
         throw err;
-      });
+      }
     })
   });
   
@@ -69,7 +69,7 @@ describe('#ForwardMessage test suite', function() {
       'state', 'stateTimeUtc', 'isClosed'
     ];
     const description = `should return an array of Statuses with ${statusKeys}`;
-    it(description, function () {
+    it(description, async function () {
       console.log(`Checking locally stored statuses: ${forwardIds}`);
       let filter = {};
       if (forwardIds.length > 0) {
@@ -79,9 +79,8 @@ describe('#ForwardMessage test suite', function() {
         date.setUTCHours(date.getUTCHours() - RETRIEVAL_OFFSET);
         filter.startTimeUtc = date;
       }
-      return Promise.resolve(idpApi.getForwardStatuses(auth, filter))
-      .then(function (result) {
-        //console.log('getForwardStatuses RESULT: ' + JSON.stringify(result, null, 2));
+      try {
+        const result = await idpApi.getForwardStatuses(auth, filter);
         expect(result).to.be.an('Object').that.includes.all.keys(apiKeys);
         if (result.errorId !== 0) {
           idpApi.getErrorName(result.errorId).then(errorName => {
@@ -97,17 +96,16 @@ describe('#ForwardMessage test suite', function() {
         for (let i = 0; i < result.statuses.length; i++) {
           let status = result.statuses[i];
           expect(status)
-            .to.be.an('Object')
-            .that.includes.all.keys(statusKeys);
+              .to.be.an('Object')
+              .that.includes.all.keys(statusKeys);
           expect(status.errorId).to.be.a('number');
           expect(status.state).to.be.a('number');
           expect(status.stateTimeUtc).to.be.a('string');
         }
-      })
-      .catch(err => {
-        console.log(`Error: ${err.message}`);
+      } catch (err) {
+        console.error(err.message);
         throw err;
-      });
+      }
     });
   });
   
@@ -116,11 +114,11 @@ describe('#ForwardMessage test suite', function() {
     const messageKeys = ['messageId', 'mobileId', 'mailboxTimeUtc', 'errorId',
       'isClosed', 'state', 'stateTimeUtc', 'referenceNumber', 'payloadJson', 'payloadRaw'
     ];
-    it(`should return array of message(s) each with ${messageKeys}`, function () {
+    it(`should return array of message(s) each with ${messageKeys}`, async function () {
       if (forwardIds.length > 0) {
-        return Promise.resolve(idpApi.getForwardMessages(auth, forwardIds))
-        .then(function (result) {
-          console.log('getForwardMessages RESULT: ' + JSON.stringify(result, null, 2));
+        try {
+          const result = await idpApi.getForwardMessages(auth, forwardIds);
+          console.log('getForwardMessages RESULT: ' + JSON.stringify(result));
           expect(result).to.be.an('Object').that.includes.all.keys(apiKeys);
           expect(result.errorId).to.equal(0);
           expect(result.messages).to.be.an('Array')
@@ -130,11 +128,10 @@ describe('#ForwardMessage test suite', function() {
             expect(message).to.be.an('Object')
               .that.includes.all.keys(messageKeys);
           }
-        })
-        .catch(err => {
-          console.log(`Error: ${err.message}`);
+        } catch (err) {
+          console.error(err.message);
           throw err;
-        });
+        }
       }
     });
     //Retrieve the message that was submitted
@@ -143,16 +140,16 @@ describe('#ForwardMessage test suite', function() {
   describe('#cancelForwardMessages()', function() {
     const apiKeys = ['errorId', 'submissions'];
     const submissionKeys = ['errorId', 'messageId', 'userMessageId', 
-      'mobileId', 'stateTimeUtc', 'scheduledSendTimeUtc', 'mobileWakeupPeriod',
-      'mobileSleepSeconds', 'size'
+      'mobileId', 'stateTimeUtc', 'scheduledSendTimeUtc', 'modemWakeupPeriod',
+      'modemSleepSeconds', 'size'
     ];
     const description = `should return a list of submissions each with ${submissionKeys}`;
     //Retrieve the message that was submitted
-    it(description, function () {
+    it(description, async function () {
       if (forwardIds.length > 0) {
         let ids = forwardIds[forwardIds.length - 1];
-        return Promise.resolve(idpApi.cancelForwardMessages(auth, ids))
-        .then(function (result) {
+        try {
+          const result = await idpApi.cancelForwardMessages(auth, ids);
           //console.log('cancelForwardMessages RESULT: ' + JSON.stringify(result, null, 2));
           expect(result).to.be.an('Object').that.includes.all.keys(apiKeys);
           expect(result.errorId).to.equal(0);
@@ -162,11 +159,10 @@ describe('#ForwardMessage test suite', function() {
             expect(submission).to.be.an('Object')
               .that.includes.all.keys(submissionKeys);
           }
-        })
-        .catch(err => {
-          console.log(`Error: ${err.message}`);
+        } catch (err) {
+          console.error(err.message);
           throw err;
-        });
+        }
       }
     });
   });
