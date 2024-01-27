@@ -4,7 +4,7 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const idpApi = require('../lib/api-v1');
+const idpApi = require('../lib/igws');
 
 describe('#getMgsTime()', function () {
   it('should return UTC time as a JS Date', async function () {

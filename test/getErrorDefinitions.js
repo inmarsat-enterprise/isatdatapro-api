@@ -4,7 +4,8 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const idpApi = require('../lib/api-v1');
+const { getErrorDefinitions } = require('../lib/igws');
+let gateway;
 
 describe('#getErrorDefinitions()', function () {
   const keys = ['errorId', 'name', 'description'];
@@ -12,7 +13,7 @@ describe('#getErrorDefinitions()', function () {
                     + ` with properties ${keys}`;
   it(testDesc, async function () {
     try {
-      const result = await idpApi.getErrorDefinitions();
+      const result = await getErrorDefinitions(gateway);
       expect(result)
         .to.be.an('Array')
         .that.has.lengthOf.above(1);

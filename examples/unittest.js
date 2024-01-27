@@ -1,8 +1,7 @@
 //process.env.NODE_ENV = 'production'
 
 //const idpApi = require('isatdatapro-api');
-const idpApi = require('../lib/api-v1');
-const { dateToIdpTime } = require('../lib/api-v1');
+const idpApi = require('../lib/igws');
 
 const gateway = require('../config/default.json').idpGatewayUrl;
 //const gateway = require('../config/local-sim.json').idpGatewayUrl;
@@ -10,7 +9,7 @@ const myMailbox = require('../test/mailboxes-local').credentials[2];
 const myMobileId = require('../test/mailboxes-local').testTerminals[2].mobileId;
 
 function getIdpTimeFromDate(date) {
-  console.log(`IDP timestamp: ${dateToIdpTime(date)}`);
+  console.log(`IDP timestamp: ${idpApi.dateToIdpTime(date)}`);
 }
 
 /**

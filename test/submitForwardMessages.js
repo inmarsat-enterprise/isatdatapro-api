@@ -4,7 +4,7 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const idpApi = require('../lib/api-v1');
+const idpApi = require('../lib/igws');
 const mailboxes = require('./mailboxes-local').credentials;
 const testTerminals = require('./mailboxes-local').testTerminals;
 
