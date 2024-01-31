@@ -29,7 +29,9 @@
     "sinon": "10.0.0"
   },
   "dependencies": {
-    "winston": "^3.2.1"
+    "bitwise": "^2.2.1",
+    "winston": "^3.2.1",
+    "xml2json": "^0.12.0"
   },
   "directories": {
     "doc": "docs",
