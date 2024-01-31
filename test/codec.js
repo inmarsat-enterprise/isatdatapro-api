@@ -6,7 +6,7 @@ const { decodeMessage } = require('../lib/messageCodec');
 
 describe('#decodeMessage()', function () {
   
-  const idpmsgTest = '/home/gbp/isatprojects/isatdatapro-api/test/fieldedge-iotdemo.idpmsg';
+  const idpmsgTest = './test/fieldedge-iotdemo.idpmsg';
 
   context('with idpmsg file', function() {
     it('should decode the test message', function() {
