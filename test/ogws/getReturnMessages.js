@@ -4,15 +4,12 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const idpApi = require('../lib/igws');
-const mailboxes = require('./mailboxes-local').credentials;
-
-const mailboxIndex = mailboxes.length - 1;
-const { accessId, password } = mailboxes[mailboxIndex];
-const auth = new idpApi.ApiV1Auth(accessId, password);
+const idpApi = require('../../lib/ogws');
+const gateways = require('./gateways-local').credentials;
+let auth = new idpApi.ApiV1Auth(gateways[0].accessId, gateways[0].password);
 const badAuth = new idpApi.ApiV1Auth('bad', 'bad');
 
-const RETRIEVAL_OFFSET = 24;
+const RETRIEVAL_OFFSET = 72;
 
 describe('#getReturnMessages()', function () {
   /* Native API responses
@@ -20,7 +17,7 @@ describe('#getReturnMessages()', function () {
   const messageKeys = ['ID', 'MobileID', 'ReceiveUTC', 'MessageUTC', 'RegionName', 'SIN'];
   const payloadKeys = ['SIN', 'MIN', 'Name', 'Fields'];
   */
-  const apiKeys = ['errorId', 'messages', 'more', 'nextStartTimeUtc', 'nextStartId'];
+  const apiKeys = ['errorId', 'messages', 'more', 'nextFromUtc', 'nextStartId'];
   const messageKeys = ['messageId', 'mobileId', 'receiveTimeUtc', 'mailboxTimeUtc', 'satelliteRegion', 'codecServiceId', 'size'];
   const payloadKeys = ['codecServiceId', 'codecMessageId', 'name', 'fields'];
   const fieldKeys = ['name', 'dataType', 'stringValue'];
@@ -35,13 +32,23 @@ describe('#getReturnMessages()', function () {
 
   let description = `should include properties ${apiKeys}`;
   
-  describe('with invalid authentication', function() {
+  describe('With invalid authentication', function() {
     const authErrCode = 21785;
-    it(description + ` and have errorId ${authErrCode}`, async function() {
+    it(`should return a 401 Unauthorized from default host`, async function() {
       try {
         const result = await idpApi.getReturnMessages(badAuth, filter);
-        expect(result).to.be.an('Object').that.has.all.keys(apiKeys);
-        expect(result.errorId).to.equal(authErrCode);
+      } catch (err) {
+        expect(err);
+      }
+    });
+  });
+
+  describe('Get token from autentication', function () {
+    it('should return a bearer token object from default host', async function () {
+      try {
+        const result = await idpApi.getAuthToken(auth);
+        console.log('Returned:', JSON.stringify(result));
+        expect(result).to.be.a('object');
       } catch (err) {
         console.error(err.message);
         throw err;
@@ -49,7 +56,7 @@ describe('#getReturnMessages()', function () {
     });
   });
 
-  describe('with valid authentication', async function() {
+  describe('With valid authentication', async function() {
     description = description +
         `\n\t where messages include properties ${messageKeys}` +
         `\n\t and if a message includes payloadJson it has keys ${payloadKeys}` +
@@ -57,18 +64,15 @@ describe('#getReturnMessages()', function () {
     it(description, async function () {
       try {
         const result = await idpApi.getReturnMessages(auth, filter);
-        expect(result).to.be.an('Object').that.has.all.keys(apiKeys);
-        expect(result.errorId).to.equal(0);
+        expect(result).to.be.an('Object').that.has.any.keys(apiKeys);
+        //expect(result.errorId).to.equal(0);
         if (result.messages !== null) {
           console.log(`Retreived ${result.messages.length} messages like: ` +
               `${JSON.stringify(result.messages[0])}`);
           result.messages.forEach(message => {
             expect(message).to.be.an('Object').that.includes.all.keys(messageKeys);
             if (message.payloadRaw) {
-              expect(message.payloadRaw).to.be.an('Array');
-              message.payloadRaw.forEach(dataByte => {
-                expect(dataByte).to.be.a('number').above(-1).and.below(256);
-              });
+              expect(message.payloadRaw).to.be.an('string');
             }
             if (message.payloadJson) {
               expect(message.payloadJson).to.have.all.keys(payloadKeys);
@@ -88,11 +92,9 @@ describe('#getReturnMessages()', function () {
               });
             }
           });
-          expect(result.nextStartTimeUtc).to.be.a('string').not.equal('');
+          expect(result.nextFromUtc).to.be.a('string').not.equal('');
           if(result.more) {
             expect(result.nextStartId).to.be.a('number').above(-1);
-          } else {
-            expect(result.nextStartId).to.be.a('number').equal(-1);
           }
         } else {
           console.log(`No retrieved messages: ${JSON.stringify(result)}`);

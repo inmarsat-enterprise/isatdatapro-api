@@ -1,3 +1,4 @@
 {
-  "igwsUrl": "http://localhost:3333/"
+  "igwsUrl": "http://localhost:3333/",
+  "ogwsUrl": ""
 }

@@ -5,7 +5,9 @@ node_modules
 .env
 config/development.json
 test/mailboxes-local.js
+test/ogws/gateways-local.js
 logs
+temp
 docs/make*
 docs/Make*
 out

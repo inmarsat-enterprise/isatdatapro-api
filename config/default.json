@@ -1,3 +1,4 @@
 {
-  "igwsUrl": "https://api.inmarsat.com/v1/idp/gateway/rest/"
+  "igwsUrl": "https://api.inmarsat.com/v1/idp/gateway/rest/",
+  "ogwsUrl": "https://ogws.orbcomm.com/api/v1.0/"
 }

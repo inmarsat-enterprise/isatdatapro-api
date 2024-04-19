@@ -1,7 +1,7 @@
 {
   "name": "isatdatapro-api",
   "version": "1.4.0",
-  "description": "A library for accessing the (Inmarsat) IsatData Pro API V1",
+  "description": "A library for accessing the IsatData Pro API V1, OGx API",
   "main": "./lib/igws.js",
   "scripts": {
     "test": "mocha --reporter spec"
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "idp",
+    "ogx",
     "satellite",
     "iot",
     "iiot",
@@ -22,10 +23,10 @@
   "author": "Geoff Bruce-Payne <geoff.bruce-payne@inmarsat.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "chai": "4.3.4",
+    "chai": "^4.3.4",
     "jaguarjs-jsdoc": "^1.0.2",
     "jsdoc": "^4.0.2",
-    "mocha": "^10.2.0",
+    "mocha": "^10.4.0",
     "sinon": "10.0.0"
   },
   "dependencies": {

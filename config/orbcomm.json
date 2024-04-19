@@ -1,3 +1,4 @@
 {
-  "igwsUrl": "https://isatdatapro.skywave.com/GLGW/GWServices_v1/RestMessages.svc/"
+  "igwsUrl": "https://isatdatapro.skywave.com/GLGW/GWServices_v1/RestMessages.svc/",
+  "ogwsUrl": "https://ogws.orbcomm.com/api/v1.0/"
 }
