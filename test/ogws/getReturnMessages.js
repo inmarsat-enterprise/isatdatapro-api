@@ -32,7 +32,7 @@ describe('#getReturnMessages()', function () {
 
   let description = `should include properties ${apiKeys}`;
   
-  describe('With invalid authentication', function() {
+  describe('with invalid authentication', function() {
     const authErrCode = 21785;
     it(`should return a 401 Unauthorized from default host`, async function() {
       try {
@@ -43,7 +43,7 @@ describe('#getReturnMessages()', function () {
     });
   });
 
-  describe('Get token from autentication', function () {
+  describe('get token from authentication', function () {
     it('should return a bearer token object from default host', async function () {
       try {
         const result = await idpApi.getAuthToken(auth);
@@ -56,16 +56,16 @@ describe('#getReturnMessages()', function () {
     });
   });
 
-  describe('With valid authentication', async function() {
+  describe('with valid authentication', async function() {
     description = description +
         `\n\t where messages include properties ${messageKeys}` +
         `\n\t and if a message includes payloadJson it has keys ${payloadKeys}` +
-        '\n\t and if a message includes payloadRaw it is an array of byte values';
+        '\n\t and if a message includes payloadRaw it is a raw binary payload';
     it(description, async function () {
       try {
         const result = await idpApi.getReturnMessages(auth, filter);
         expect(result).to.be.an('Object').that.has.any.keys(apiKeys);
-        //expect(result.errorId).to.equal(0);
+        expect(result.errorId).to.equal(0);
         if (result.messages !== null) {
           console.log(`Retreived ${result.messages.length} messages like: ` +
               `${JSON.stringify(result.messages[0])}`);
