@@ -5,14 +5,14 @@ const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
 const idpApi = require('../../lib/ogws');
-const gateways = require('./gateways-local').credentials;
+const accounts = require('./accounts-local').credentials;
 // const OGWS = require('../../lib/ogws');
 // const config = {auth:{
-//   accessId: gateways[0].accessId,
-//   password: gateways[0].password,
+//   accessId: accounts[0].accessId,
+//   password: accounts[0].password,
 // }}
 // const ogx = new OGWS.Service(config);
-let auth = new idpApi.ApiV1Auth(gateways[0].accessId, gateways[0].password);
+let auth = new idpApi.ApiV1Auth(accounts[0].accessId, accounts[0].password);
 
 describe('#getAuthenticateToken()', function () {
   it('should return a bearer token object from default host', async function () {

@@ -4,7 +4,7 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const { dateToIdpTime } = require('../lib/igws');
+const { dateToIdpTime } = require('../../lib/igws');
 
 
 describe('#dateToIdpTime()', function () {

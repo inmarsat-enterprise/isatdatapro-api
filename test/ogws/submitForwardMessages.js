@@ -5,11 +5,11 @@ const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
 const idpApi = require('../../lib/ogws');
-const gateways = require('./gateways-local').credentials;
-let auth = new idpApi.ApiV1Auth(gateways[0].accessId, gateways[0].password);
+const accounts = require('./accounts-local').credentials;
+let auth = new idpApi.ApiV1Auth(accounts[0].accessId, accounts[0].password);
 
-const terminals = require('./gateways-local').terminals;
-const testMobileId = terminals[0].mobileId;
+const mobiles = require('./accounts-local').mobiles;
+const testMobileId = mobiles[0].mobileId;
 
 const RETRIEVAL_OFFSET = 24;   //: for Forward statuses
 

@@ -113,7 +113,16 @@ The library uses configuration file(s) in **./node_modules/isatdatapro-api/confi
 ### Testing
 
 The **./test** directory contains various Mocha/Chai test cases exercising the operations
-and expected returns, as well as a template to configure Mailbox credentials
+and expected returns, as well as a template to configure credentials.
+
+To run a specific subset of tests(i.e. IGWS) enter the following command:
+```
+npx mocha test/igws
+```
+To run a specific test function enter the name of the test:
+```
+npx mocha test/igws/getMgsVersion.js
+```
 
 ## Deployment
 

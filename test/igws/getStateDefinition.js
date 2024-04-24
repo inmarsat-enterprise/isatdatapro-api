@@ -4,7 +4,7 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const idpApi = require('../lib/igws');
+const idpApi = require('../../lib/igws');
 
 describe('#getStateDefinition(SUBMITTED)', function() {
   let state = 0;

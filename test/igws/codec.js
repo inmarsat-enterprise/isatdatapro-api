@@ -2,7 +2,7 @@ const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
 
-const { decodeMessage } = require('../lib/messageCodec');
+const { decodeMessage } = require('../../lib/messageCodec');
 
 describe('#decodeMessage()', function () {
   

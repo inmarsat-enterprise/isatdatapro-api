@@ -4,7 +4,7 @@
 const chai = require('chai');
 chai.config.includeStack = false;
 const expect = chai.expect;
-const { getErrorDefinitions } = require('../lib/igws');
+const { getErrorDefinitions } = require('../../lib/igws');
 let gateway;
 
 describe('#getErrorDefinitions()', function () {

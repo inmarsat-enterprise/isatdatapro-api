@@ -4,8 +4,8 @@ node_modules
 .vscode
 .env
 config/development.json
-test/mailboxes-local.js
-test/ogws/gateways-local.js
+test/igws/mailboxes-local.js
+test/ogws/accounts-local.js
 logs
 temp
 docs/make*
