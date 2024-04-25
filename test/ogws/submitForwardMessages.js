@@ -16,12 +16,12 @@ const RETRIEVAL_OFFSET = 24;   //: for Forward statuses
 describe('#ForwardMessage test suite', function() {
   let idList = [];
   
-  describe('get token from authentication', function () {
+  describe('#getAuthenticateToken()', function () {
     it('should return a bearer token object from default host', async function () {
       try {
-        const result = await idpApi.getAuthToken(auth);
-        console.log('Returned:', JSON.stringify(result));
-        expect(result).to.be.a('object');
+        auth = await idpApi.getAuthToken(auth);
+        console.log('Returned:', JSON.stringify(auth));
+        expect(auth).to.be.a('object');
       } catch (err) {
         console.error(err.message);
         throw err;
