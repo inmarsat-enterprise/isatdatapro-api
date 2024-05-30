@@ -1,0 +1,10 @@
+{
+    "serviceKey": 0,
+    "messageKey": 100,
+    "fields": [
+        {
+            "name": "metricsPeriod",
+            "value": "LastFullDay"
+        }
+    ]
+}
